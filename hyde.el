@@ -61,13 +61,13 @@
 
 
 (defcustom hyde/jekyll-command
-  "jekyll"
+  "jekyll build"
   "Command to run jekyll to create the blog"
   :type 'string
-  :group 'hyde)
+  :group 'hyde) 
 
 (defcustom hyde/serve-command
-  "jekyll serve"
+  "jekyll serve --drafts"
   "Command to serve jekyll to the localhost"
   :type 'string
   :group 'hyde)
@@ -319,10 +319,12 @@ user"
 (defun hyde/new-post (title)
   "Creates a new post"
   (interactive "MEnter post title: ")
-  (let ((post-file-name (expand-file-name (format "%s/%s/%s.markdown" 
-                                                  hyde-home hyde-drafts-dir (concat 
-                                                                             (format-time-string "%Y-%m-%d-")
-                                                                             (downcase (replace-regexp-in-string " " "_" title))))))
+  (let ((post-file-name (expand-file-name
+        (format "%s/%s/%s.markdown" 
+                hyde-home hyde-drafts-dir
+                (concat 
+                 ;; (format-time-string "%Y-%m-%d-")
+                 (downcase (replace-regexp-in-string " " "_" title))))))
         (hyde-buffer (current-buffer)))
     (save-excursion
       (find-file post-file-name)
