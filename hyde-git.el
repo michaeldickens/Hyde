@@ -66,12 +66,12 @@
               (message (concat "Running " cmd))
               (shell-command cmd))))
         ;; Commit them
-        (let ((cmd (format "cd '%s' && git commit -m '%s' > /dev/null" (expand-file-name repo) commit-message)))
+        (let ((cmd (format "cd '%s' && git commit -m '%s'" (expand-file-name repo) commit-message)))
           (progn
             (message (concat "Running " cmd))
             (shell-command cmd))))
     ;; Otherwise, simply commit. Don't add. 
-    (let ((cmd (format "cd '%s' && git commit -m '%s' > /dev/null" (expand-file-name repo) commit-message)))
+    (let ((cmd (format "cd '%s' && git commit -m '%s'" (expand-file-name repo) commit-message)))
       (shell-command cmd))))
     
 
