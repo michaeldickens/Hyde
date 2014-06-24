@@ -294,8 +294,11 @@ user"
                                      (format "%s%s" hyde-home
                                              (replace-regexp-in-string "_drafts" "" asset)))))
           ;; Move over the actual post
+          (message (format "moving file %s" (concat dir "/" post-file-name)))
           (hyde/hyde-rename-file (concat dir "/" post-file-name)
-                                 (concat hyde-posts-dir "/" post-file-name))))
+                                 (concat hyde-posts-dir "/"
+                                         (format-time-string "%Y-%m-%d-")
+                                         post-file-name))))
     (hyde/vc-commit hyde-home
                     '()
                     (concat "Promoting " post-file-name))
